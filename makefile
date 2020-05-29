@@ -1,6 +1,3 @@
-main:
+cdn77-refresh: cdn77-refresh.go
 	CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-s -w -extldflags "-static"'
-
-dist: main
 	upx --brute cdn77-refresh
-
