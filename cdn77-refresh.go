@@ -26,7 +26,7 @@ type cdn77resourcelist struct {
 	Status      string `json:"status"`
 	Description string `json:"description"`
 	CdnResource []struct {
-		Id    int    `json:"id"`
+		ID    int    `json:"id"`
 		CName string `json:"cname"`
 	} `json:"cdnResources"`
 }
@@ -68,7 +68,7 @@ func main() {
 
 	resourcelist := getResourceList(params)
 
-	params["cdn_id"] = getCdnId(site, resourcelist)
+	params["cdn_id"] = getCdnID(site, resourcelist)
 
 	if *purge {
 		purgeAll(params)
@@ -121,9 +121,9 @@ func getResourceList(params map[string]string) cdn77resourcelist {
 	return resourcelist
 }
 
-func getCdnId(site *string, resourcelist cdn77resourcelist) string {
+func getCdnID(site *string, resourcelist cdn77resourcelist) string {
 	var messages bytes.Buffer
-	var cdn_id string
+	var cdnID string
 
 	messages.WriteString("Searching for ")
 	messages.WriteString(*site)
@@ -131,12 +131,12 @@ func getCdnId(site *string, resourcelist cdn77resourcelist) string {
 
 	for _, cdnres := range resourcelist.CdnResource {
 		if strings.ToLower(cdnres.CName) == strings.ToLower(*site) {
-			cdn_id = strconv.Itoa(cdnres.Id)
+			cdnID = strconv.Itoa(cdnres.ID)
 			break
 		}
 	}
 
-	if cdn_id == "" {
+	if cdnID == "" {
 		messages.WriteString("not found, aborting")
 		log.Error().Msg(messages.String())
 		os.Exit(0xa0)
@@ -144,11 +144,11 @@ func getCdnId(site *string, resourcelist cdn77resourcelist) string {
 
 	messages.WriteString("ok (")
 	messages.WriteString("resource id #")
-	messages.WriteString(cdn_id)
+	messages.WriteString(cdnID)
 	messages.WriteString(")")
 	log.Info().Msg(messages.String())
 
-	return cdn_id
+	return cdnID
 }
 
 func purgeAll(params map[string]string) {
