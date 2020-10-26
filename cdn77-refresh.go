@@ -31,11 +31,13 @@ type cdn77resourcelist struct {
 	} `json:"cdnResources"`
 }
 
+// Url struct
 type Url struct {
 	XMLName xml.Name `xml:"url"`
 	Loc     string   `xml:"loc"`
 }
 
+// UrlSet struct
 type UrlSet struct {
 	XMLName xml.Name `xml:"urlset"`
 	Urls    []Url    `xml:"url"`
