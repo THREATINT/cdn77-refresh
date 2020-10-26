@@ -22,14 +22,12 @@ gocdn77-refresh --login=LOGIN --token=TOKEN --site=SITE --sitemap=<sitemap.xml> 
 * --verbose : additional output
 
 Typical run would be:
-```
-2019-06-07T08:00:34+02:00 | INFO  | Reading resource list from CDN77 ... ok
+```2019-06-07T08:00:34+02:00 | INFO  | Reading resource list from CDN77 ... ok
 2019-06-07T08:00:34+02:00 | INFO  | Searching for (...) ... ok (resource id #...)
 2019-06-07T08:00:35+02:00 | INFO  | Starting 'purge-all' ... ok
 2019-06-07T08:00:35+02:00 | INFO  | Reading sitemap.xml ... ok
 2019-06-07T08:00:35+02:00 | INFO  | Prefetching (...) ... ok
-(...)
-```
+(...)```
 
 ## Reference
 * [CDN77 API documentation](https://client.cdn77.com/support/api)
