@@ -17,11 +17,13 @@ import (
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
+// cdn77response struct
 type cdn77response struct {
 	Status      string `json:"status"`
 	Description string `json:"description"`
 }
 
+// cdn77ressourcelist struct
 type cdn77resourcelist struct {
 	Status      string `json:"status"`
 	Description string `json:"description"`
@@ -31,16 +33,16 @@ type cdn77resourcelist struct {
 	} `json:"cdnResources"`
 }
 
-// Url struct
-type Url struct {
+// URL struct
+type URL struct {
 	XMLName xml.Name `xml:"url"`
 	Loc     string   `xml:"loc"`
 }
 
-// UrlSet struct
-type UrlSet struct {
+// URLSet struct
+type URLSet struct {
 	XMLName xml.Name `xml:"urlset"`
-	Urls    []Url    `xml:"url"`
+	URLs    []URL    `xml:"url"`
 }
 
 var log zerolog.Logger
@@ -229,7 +231,7 @@ func urlsFromSitemap(filename *string) []string {
 		os.Exit(0xc1)
 	}
 
-	var urlset UrlSet
+	var urlset URLSet
 	err = xml.Unmarshal(byteValue, &urlset)
 	if err != nil {
 		messages.WriteString(err.Error())
@@ -242,7 +244,7 @@ func urlsFromSitemap(filename *string) []string {
 	log.Info().Msg(messages.String())
 
 	s := []string{}
-	for _, u := range urlset.Urls {
+	for _, u := range urlset.URLs {
 		s = append(s, u.Loc)
 	}
 
